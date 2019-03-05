@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="studentDao" class="dao.StudentDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="studentService" class="service.StudentService">
+		<property name="studentDao" ref="studentDao"></property>
+	</bean>
+	<bean id="studentAction" class="action.StudentAction">
+		<property name="studentService" ref="studentService"></property>
+		<property name="roomService" ref="roomService"></property>
+	</bean>
+	
+	<bean id="roomDao" class="dao.RoomDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="roomService" class="service.RoomService">
+		<property name="roomDao" ref="roomDao"></property>
+	</bean>
+	<bean id="roomAction" class="action.RoomAction">
+		<property name="roomService" ref="roomService"></property>
+	</bean>
+	
+	<bean id="waterDao" class="dao.WaterDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="waterService" class="service.WaterService">
+		<property name="waterDao" ref="waterDao"></property>
+	</bean>
+	<bean id="waterAction" class="action.WaterAction">
+		<property name="waterService" ref="waterService"></property>
+		<property name="cycleService" ref="cycleService"></property>
+	</bean>
+	
+	<bean id="cycleDao" class="dao.CycleDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="cycleService" class="service.CycleService">
+		<property name="cycleDao" ref="cycleDao"></property>
+	</bean>
+	<bean id="cycleAction" class="action.CycleAction">
+		<property name="cycleService" ref="cycleService"></property>
+	</bean>
+	
+	<bean id="personDao" class="dao.PersonDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="personService" class="service.PersonService">
+		<property name="personDao" ref="personDao"></property>
+	</bean>
+	<bean id="personAction" class="action.PersonAction">
+		<property name="personService" ref="personService"></property>
+	</bean>
+	
+	<bean id="roomWaterDao" class="dao.RoomWaterDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="roomWaterService" class="service.RoomWaterService">
+		<property name="roomWaterDao" ref="roomWaterDao"></property>
+	</bean>
+	<bean id="roomWaterAction" class="action.RoomWaterAction">
+		<property name="roomWaterService" ref="roomWaterService"></property>
+		<property name="roomService" ref="roomService"></property>
+	</bean>
+	
+	<bean id="waterAddDao" class="dao.WaterAddDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="waterAddService" class="service.WaterAddService">
+		<property name="waterAddDao" ref="waterAddDao"></property>
+	</bean>
+	<bean id="waterAddAction" class="action.WaterAddAction">
+		<property name="waterAddService" ref="waterAddService"></property>
+		<property name="roomService" ref="roomService"></property>
+	</bean>
+	
+	<bean id="adminDao" class="dao.AdminDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="adminService" class="service.AdminService">
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	<bean id="adminAction" class="action.AdminAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	
+</beans>

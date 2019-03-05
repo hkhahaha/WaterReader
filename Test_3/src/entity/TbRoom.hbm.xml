@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-2-23 22:29:09 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="entity.TbRoom" table="tb_room" catalog="test">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="room" type="java.lang.String">
+            <column name="room">
+                <comment>&#209;&#167;&#201;&#250;&#181;&#196;&#203;&#222;&#201;&#225;&#177;&#224;&#186;&#197;</comment>
+            </column>
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address">
+                <comment>&#209;&#167;&#201;&#250;&#181;&#196;&#190;&#223;&#204;&#229;&#203;&#222;&#201;&#225;</comment>
+            </column>
+        </property>
+        <set name="tbSts" table="tb_st" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="room">
+                    <comment>&#209;&#167;&#201;&#250;&#181;&#196;&#203;&#222;&#201;&#225;&#177;&#224;&#186;&#197;</comment>
+                </column>
+            </key>
+            <one-to-many class="entity.TbSt" />
+        </set>
+        <set name="tbRoomWaters" table="tb_room_water" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="room">
+                    <comment>&#209;&#167;&#201;&#250;&#181;&#196;&#203;&#222;&#201;&#225;&#177;&#224;&#186;&#197;</comment>
+                </column>
+            </key>
+            <one-to-many class="entity.TbRoomWater" />
+        </set>
+    </class>
+</hibernate-mapping>

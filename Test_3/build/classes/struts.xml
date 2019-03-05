@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<constant name="struts.action.extension" value="action,,do"></constant>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	<package name="test1" extends="struts-default" namespace="/" strict-method-invocation="false">
+<!-- 	
+	<action name="product-save" class="action.Product" method="baocun">
+		<result name="details">/details.jsp</result>
+	</action>
+	<action name="testTag" class="action.Product" method="testTag">
+		<result name="success">/common-tag.jsp</result>
+	</action>
+-->
+		<!-- 定义新的拦截器栈, 配置 prepare 拦截器栈的 alwaysInvokePrepare 参数值为 false -->
+		<interceptors>
+			<interceptor-stack name="sshStack">
+				<interceptor-ref name="paramsPrepareParamsStack">
+					<param name="prepare.alwaysInvokePrepare">false</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 使用新的拦截器栈 -->
+		<default-interceptor-ref name="sshStack"></default-interceptor-ref>
+
+
+
+	<action name="test1" class="Test" method="A">
+		<result name="success">/WEB-INF/1.jsp</result>
+	</action>
+	<action name="test" class="Test" method="B">
+		<result name="input">/WEB-INF/water/login.jsp</result>
+	</action>
+	<action name="PC" class="Test" method="A">
+		<result name="success">/501.html</result>
+	</action>
+	<!-- admin login -->
+
+	
+	<!-- test -->
+	<action name="admin-login" class="action.AdminAction" method="login">
+		<result name="success">/WEB-INF/admin/login_success.jsp</result>
+		<result name="input">/admin.jsp</result>
+	</action>
+	<!-- student list -->
+	<action name="student-*" class="studentAction" method="{1}">
+		<result name="list">/WEB-INF/admin/student-list.jsp</result>
+		<!-- ajax删除 -->
+		<result type="stream" name="delete">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		</result>
+		<!-- 原始删除 -->
+		<result name="success" type="redirect">/student-list</result>
+		<result name="input">/WEB-INF/admin/student-input.jsp</result>
+	</action>
+	<!-- 抄表员登录 -->
+	<action name="water-login" class="action.WaterAction" method="login">
+		<result name="success">/WEB-INF/water/water-add.jsp</result>
+		<result name="input">/WEB-INF/water/login.jsp</result>
+	</action>
+	<!-- cycle list -->
+	<action name="cycle-*" class="cycleAction" method="{1}">
+		<result name="list">/WEB-INF/admin/cycle-list.jsp</result>
+		<result name="delete" type="redirect">/cycle-list</result>
+		<result name="success" type="redirect">/cycle-list</result>
+		<result name="input">/WEB-INF/admin/cycle-input.jsp</result>
+	</action>
+	<!-- person list -->
+	<action name="person-*" class="personAction" method="{1}">
+		<result name="list">/WEB-INF/admin/person-list.jsp</result>
+		<result name="delete" type="redirect">/person-list</result>
+		<result name="success" type="redirect">/person-list</result>
+		<result name="input">/WEB-INF/admin/person-input.jsp</result>
+	</action>
+	<!-- room list -->
+	<action name="room-*" class="roomAction" method="{1}">
+		<result name="list">/WEB-INF/admin/room-list.jsp</result>
+		<result name="delete" type="redirect">/room-list</result>
+		<result name="success" type="redirect">/room-list</result>
+		<result name="input">/WEB-INF/admin/room-input.jsp</result>
+	</action>
+	<!-- roomwater list -->
+	<action name="roomwater-*" class="roomWaterAction" method="{1}">
+		<result name="list">/WEB-INF/admin/roomwater-list.jsp</result>
+		<result name="delete" type="redirect">/roomwater-list</result>
+		<result name="success" type="redirect">/roomwater-list</result>
+		<result name="input">/WEB-INF/admin/roomwater-input.jsp</result>
+	</action>
+	<!-- water add -->
+	<action name="water-add" class="waterAddAction" method="save">
+		<result name="success">/WEB-INF/water/water-add-success.jsp</result>
+	</action>
+	</package>
+</struts>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-2-23 22:29:09 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="entity.TbRoomWater" table="tb_room_water" catalog="test">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbRoom" class="entity.TbRoom" fetch="select">
+            <column name="room">
+                <comment>&#209;&#167;&#201;&#250;&#181;&#196;&#203;&#222;&#201;&#225;&#177;&#224;&#186;&#197;</comment>
+            </column>
+        </many-to-one>
+        <property name="water" type="string">
+            <column name="water">
+                <comment>&#203;&#174;&#193;&#191;&#208;&#197;&#207;&#162;</comment>
+            </column>
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10">
+                <comment>&#179;&#173;&#177;&#237;&#214;&#220;&#198;&#218;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
